@@ -48,9 +48,8 @@ int checkMatchChar(char s1[40], char s2[15]) {
 }
 
 int checkMatchStringCmp(char s1[40], char s2[15]) {
-    int s2Length = strlen(s2);
     for (int i = 0; i < 40; i++) {
-        if (strncmp(&s1[i], s2, s2Length) == 0)
+        if (strncmp(&s1[i], s2, 15) == 0)
             return i;
     }
 
@@ -71,7 +70,7 @@ int main() {
     if (stringIndex != -1 || charIndex != -1 || strCmpIndex != -1) {
         cout << "The first string index of '" << s2 << "' in '" << s1 << "' is: " << stringIndex << endl;
         cout << "The first char index of '" << s2 << "' in '" << s1 << "' is: " << charIndex << endl;
-        cout << "The first str char index of '" << s2 << "' in '" << s1 << "' is: " << strCmpIndex << endl;
+        cout << "The first char index of '" << s2 << "' in '" << s1 << "' is: " << strCmpIndex << endl;
     } else {
         cout << "'" << s2 << "' not found in '" << s1 << "'" << endl;
     }

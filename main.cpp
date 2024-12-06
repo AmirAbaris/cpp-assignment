@@ -3,6 +3,7 @@
 #include <cstring> 
 using namespace std;
 
+// DOES'T COMPARE LOWERCASE VS UPPERCASE => L = l
 int checkMatchString(string s1, string s2) {
     // when we compare 2 different strings, char, etc, we use two nested loops and init the second loop we start with j + j
     // this is looks like a bubble sort! but we check for 2 strings here, thats why we wrote i + j in the if check
@@ -29,6 +30,7 @@ int checkMatchString(string s1, string s2) {
     return -1;
 };
 
+// DOES'T COMPARE LOWERCASE VS UPPERCASE => L = l
 int checkMatchChar(char s1[40], char s2[15]) {
     for (int i = 0; i < 40; i++) {
         bool match = false;
@@ -47,9 +49,13 @@ int checkMatchChar(char s1[40], char s2[15]) {
     return -1;
 }
 
+// COMPARES LOWERCASE VS UPPERCASE => L != l
 int checkMatchStringCmp(char s1[40], char s2[15]) {
+    int s1Length = strlen(s1);
     int s2Length = strlen(s2);
-    for (int i = 0; i < 40; i++) {
+
+    for (int i = 0; i < s1Length - s2Length; i++) {
+        // using strncmp you can limit the search, so that it doesn't reach non-accessible memory.
         if (strncmp(&s1[i], s2, s2Length) == 0)
             return i;
     }

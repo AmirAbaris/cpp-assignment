@@ -1,16 +1,18 @@
 #include <iostream>
-#include <cstring> 
+#include <cstring>
 using namespace std;
 
 #pragma region Section A
-// LOWERCASE VS UPPERCASE => L != l
 int checkMatch(char s1[40], char s2[15]) {
     int s1Length = strlen(s1);
     int s2Length = strlen(s2);
 
     for (int i = 0; i <= s1Length - s2Length; i++) {
-        // Compare substrings with limited length
-        if (strncmp(&s1[i], s2, s2Length) == 0)
+        char temp[15];
+        strncpy(temp, &s1[i], s2Length);
+        temp[s2Length] = '\0'; 
+
+        if (strcmp(temp, s2) == 0)
             return i;
     }
 
@@ -25,8 +27,11 @@ int countSubstrings(char s1[40], char s2[15]) {
     int count = 0;
 
     for (int i = 0; i <= s1Length - s2Length; i++) {
-        // Compare substrings with limited length
-        if (strncmp(&s1[i], s2, s2Length) == 0) {
+        char temp[15];
+        strncpy(temp, &s1[i], s2Length);
+        temp[s2Length] = '\0'; 
+
+        if (strcmp(temp, s2) == 0) {
             count++;
         }
     }
@@ -36,7 +41,7 @@ int countSubstrings(char s1[40], char s2[15]) {
 #pragma endregion
 
 int main() {
-    char s1[40] = "lamiz is awesome";
+    char s1[40] = "is lamiz and lamiz";
     char s2[15] = "lamiz";
     int strCmpIndex = checkMatch(s1, s2);
     int substringCount = countSubstrings(s1, s2);

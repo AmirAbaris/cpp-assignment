@@ -2,14 +2,14 @@
 #include <cstring> 
 using namespace std;
 
- #pragma region Section A
+#pragma region Section A
 // LOWERCASE VS UPPERCASE => L != l
 int checkMatch(char s1[40], char s2[15]) {
     int s1Length = strlen(s1);
     int s2Length = strlen(s2);
 
-    for (int i = 0; i < s1Length - s2Length; i++) {
-        // using strncmp you can limit the search, so that it doesn't reach non-accessible memory.
+    for (int i = 0; i <= s1Length - s2Length; i++) {
+        // Compare substrings with limited length
         if (strncmp(&s1[i], s2, s2Length) == 0)
             return i;
     }
@@ -18,14 +18,14 @@ int checkMatch(char s1[40], char s2[15]) {
 }
 #pragma endregion
 
- #pragma region Section B
+#pragma region Section B
 int countSubstrings(char s1[40], char s2[15]) {
     int s1Length = strlen(s1);
     int s2Length = strlen(s2);
     int count = 0;
 
     for (int i = 0; i <= s1Length - s2Length; i++) {
-        // compares the substrings of s2 in s1
+        // Compare substrings with limited length
         if (strncmp(&s1[i], s2, s2Length) == 0) {
             count++;
         }
@@ -37,19 +37,19 @@ int countSubstrings(char s1[40], char s2[15]) {
 
 int main() {
     char s1[40] = "lamiz is awesome";
-    char s2 [15] = "lamiz";
+    char s2[15] = "lamiz";
     int strCmpIndex = checkMatch(s1, s2);
     int substringCount = countSubstrings(s1, s2);
 
     // Section A
     if (strCmpIndex != -1) {
-        cout << "The first str char index of '" << s2 << "' in '" << s1 << "' is: " << strCmpIndex << endl;
+        cout << "The first occurrence of '" << s2 << "' in '" << s1 << "' starts at index: " << strCmpIndex << endl;
     } else {
         cout << "'" << s2 << "' not found in '" << s1 << "'" << endl;
     }
 
     // Section B
-    cout << "The substring '" << s1 << "' appears " << substringCount << " times in '" << s2 << "'." << endl;
-    
+    cout << "The substring '" << s2 << "' appears " << substringCount << " times in '" << s1 << "'." << endl;
+
     return 0;
 }
